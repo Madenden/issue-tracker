@@ -1,0 +1,19 @@
+#time-wrapper {
+    margin: 15% auto 0;
+    min-width: 300px;
+    text-align: center;
+}
+
+.current-time-content {
+    font-size: 5em;
+}
+
+.alarm-input-btn {
+    vertical-align: baseline;
+    margin-left: 15px;
+}
+
+.alarm-time {
+    margin-top: 15px;
+    display: none;
+}

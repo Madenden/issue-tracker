@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block title %}Alarm Clock{% endblock %}
+
+{% block content %}
+    <div id="time-wrapper" class="align-middle">
+        <div id="current-time">
+            <h2 class="current-time-content"></h2>
+        </div>
+        <div id="alarm">
+            <label for="alarm-input">Alarm</label>
+            <input type="time" name="alarm-input" id="alarm-input"/>
+            <button type="button" class="btn btn-success alarm-input-btn">Set Up</button>
+        </div>
+        <p class="alarm-time alert alert-warning" role="alert"></p>
+    </div>
+{% endblock %}
+
+{% block js_footer %}
+    <script type="text/javascript" src="{% static 'js/alarm-clock.js' %}"></script>
+{% endblock %}
