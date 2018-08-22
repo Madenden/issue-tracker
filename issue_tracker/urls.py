@@ -16,8 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from alarm_clock import urls as urls_alarm_clock
+from authentication import urls as urls_authentication
+from tickets import urls as urls_tickets
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include(urls_alarm_clock))
+    url(r'^', include(urls_alarm_clock)),
+    url(r'^', include(urls_authentication)),
+    url(r'^', include(urls_tickets)),
 ]

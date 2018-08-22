@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'alarm_clock',
-    'accounts',
+    'authentication',
+    'tickets',
 ]
 
 MIDDLEWARE = [
@@ -123,3 +124,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
     )
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"

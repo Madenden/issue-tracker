@@ -1,3 +1,14 @@
+.navbar-expand-lg {
+    background-color: #77ccdd;
+}
+.navbar-expand-lg .navbar-brand {
+    color: #fff;
+    font-weight: 700;
+}
+.nav-bar-auth-btn {
+    margin-left: auto;
+}
+
 #time-wrapper {
     margin: 15% auto 0;
     min-width: 300px;
@@ -16,4 +27,8 @@
 .alarm-time {
     margin-top: 15px;
     display: none;
+}
+
+.alert {
+    width: 100%;
 }
