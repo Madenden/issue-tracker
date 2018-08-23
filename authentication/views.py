@@ -1,12 +1,32 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from tickets.views import tickets 
-from .forms import LoginForm
+from .forms import LoginForm, RegistrationForm
 
 # Create your views here.
 def signup(request):
-    return render(request, "signup.html")
+    if request.user.is_authenticated:
+        return redirect(reverse("tickets"))
+        
+    if request.method == "POST":
+        reg_form = RegistrationForm(request.POST)
+        if reg_form.is_valid():
+            reg_form.save()
+            
+            user = auth.authenticate(username=request.POST["username"],
+                                    password=request.POST["password1"])
+            
+            if user:
+                auth.login(user=user, request=request)
+                messages.success(request, "You have been successfully registered!")
+                return redirect(reverse("tickets"))
+            else:
+                messages.error(request, "Unable to register your account")
+    else:
+        reg_form = RegistrationForm()
+    return render(request, "signup.html", {"reg_form": reg_form})
     
 def login(request):
     if request.user.is_authenticated:

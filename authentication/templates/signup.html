@@ -1,8 +1,18 @@
 {% extends "base.html" %}
+{% load bootstrap_tags %}
+
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
-
-
+<div class="signup-content-wrapper">
+    <h1>Registration</h1>
+    <p>Registration allows creating and upvotes bug tickets!</p>
+    
+    <form method="POST">
+        {% csrf_token %}
+        {{ reg_form | as_bootstrap }}
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+</div>
 
 {% endblock %}

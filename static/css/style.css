@@ -32,3 +32,48 @@
 .alert {
     width: 100%;
 }
+
+.card-deck {
+    margin: auto;
+    text-align: center;
+}
+
+.plans-header {
+    text-align: center;
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.free-signup-btn {
+    margin-top: 48px;
+}
+
+.login-content-wrapper{
+    width: 45%;
+}
+.signup-content-wrapper,
+.login-content-wrapper {
+    margin: 20px auto;
+    padding: 0 20px 10px;
+}
+.signup-content-wrapper>p {
+    font-weight: 300;
+}
+.signup-content-wrapper button,
+.login-content-wrapper button {
+    float: right;
+}
+
+@media only screen and (max-width: 768px) {
+    .login-content-wrapper {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .login-content-wrapper {
+        width: 90%;
+    }
+}
