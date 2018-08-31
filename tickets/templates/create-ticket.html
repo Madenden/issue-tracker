@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% load bootstrap_tags %}
+{% load crispy_forms_tags %}
+{% block title %}Create Ticket{% endblock %}
 
-{% block title %}Log In{% endblock %}
 {% block navbar %} 
     <div class="nav-bar-auth-btn">
         {% if user.is_authenticated %}
@@ -14,8 +14,8 @@
 {% endblock %}
 
 {% block content %}
-<div class="login-content-wrapper">
-    <h1>Login</h1>
+<div class="create-bug-issue">
+    <h1>Create Issue</h1>
     
     {% if messages %}
         {% for message in messages %}
@@ -27,13 +27,10 @@
         {% endfor %}
     {% endif %}
     
-    <form method="POST">
+    <form class="create-form" method="POST">
         {% csrf_token %}
-        {{ login_form | as_bootstrap }}
-        {% if request.GET.next %}
-            <input type="hidden" name="next" value="{{ request.GET.next }}" />
-        {% endif %}
-        <button type="submit" class="btn btn-primary">Login</button>
+        {{ form|crispy }}
+        <input type="submit" value="Create Issue"/>
     </form>
 </div>
 {% endblock %}

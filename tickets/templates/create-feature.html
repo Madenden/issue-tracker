@@ -1,7 +1,6 @@
 {% extends "base.html" %}
-{% load bootstrap_tags %}
-
-{% block title %}Sign Up{% endblock %}
+{% load crispy_forms_tags %}
+{% block title %}Create Feature{% endblock %}
 {% block navbar %} 
     <div class="nav-bar-auth-btn">
         {% if user.is_authenticated %}
@@ -14,15 +13,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="signup-content-wrapper">
-    <h1>Registration</h1>
-    <p>Registration allows creating and upvotes bug tickets!</p>
+<div class="create-feature">
+    <h1>Create Feature</h1>
+    <p class="lead">If you wish to add an extra feature, yo have to pay a minimum amount of your choice!</p>
     
-    <form method="POST">
+    <form class="create-form" method="POST">
         {% csrf_token %}
-        {{ reg_form | as_bootstrap }}
-        <button type="submit" class="btn btn-primary">Register</button>
+        {{ form|crispy }}
+        <input type="submit" value="Submit"/>
     </form>
 </div>
-
 {% endblock %}

@@ -66,6 +66,23 @@
     float: right;
 }
 
+.issue-tickets {
+    margin: auto;
+}
+.issue-buttons {
+    width: 100%;
+}
+
+.create-feature,
+.create-bug-issue {
+    text-align: center;
+    width: 100%;
+}
+.create-form input[type='text'] {
+    margin: auto;
+    display: block;
+}
+
 @media only screen and (max-width: 768px) {
     .login-content-wrapper {
         width: 60%;
