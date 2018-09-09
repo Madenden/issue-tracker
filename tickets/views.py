@@ -1,21 +1,69 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from .models import BugTicket
+from .models import BugTicket, FeatureTicket
 from .forms import BugTicketForm, FeatureTicketForm
 from .forms import MakePaymentForm
 from django.contrib import messages
 from django.conf import settings
+from django.views.generic import RedirectView
 import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
 # Create your views here.
 def tickets(request):
-    tickets = BugTicket.objects.all().order_by("created_date")
-    return render(request, "tickets.html", {'tickets': tickets})
+    bug_tickets = BugTicket.objects.all().order_by("created_date")
+    feature_tickets = FeatureTicket.objects.all().order_by("created_date")
+    return render(request, "tickets.html", {'bug_tickets': bug_tickets, 'feature_tickets': feature_tickets})
+    
+@login_required(login_url="/login/") 
+def the_ticket(request, pk):
+    try:
+        feature_tk = FeatureTicket.objects.get(pk=pk)
+    except FeatureTicket.DoesNotExist:
+        feature_tk = None
+        
+    try:
+        bug_tk = BugTicket.objects.get(pk=pk)
+    except BugTicket.DoesNotExist:
+        bug_tk = None
+        
+    if feature_tk == None:
+        ticket = bug_tk
+    elif bug_tk == None:
+        ticket = feature_tk
+    
+    return render(request, "the-ticket.html", {'ticket': ticket})
+    
+def upvote(request, pk):
+    try:
+        feature_tk = FeatureTicket.objects.get(pk=pk)
+    except FeatureTicket.DoesNotExist:
+        feature_tk = None
+        
+    try:
+        bug_tk = BugTicket.objects.get(pk=pk)
+    except BugTicket.DoesNotExist:
+        bug_tk = None
+        
+    if feature_tk == None:
+        ticket = bug_tk
+    elif bug_tk == None:
+        ticket = feature_tk
+    
+    user = request.user
+    
+    if user.is_authenticated():
+        if user in ticket.upvotes.all():
+            ticket.upvotes.remove(user)
+        else:
+            ticket.upvotes.add(user)
+    
+    return redirect("the-ticket", pk=pk)
+        
 
 @login_required(login_url="/login/")    
-def create_ticket(request):
+def create_bug_ticket(request):
     if request.method == "POST":
         form = BugTicketForm(request.POST)
         if form.is_valid():
@@ -23,6 +71,7 @@ def create_ticket(request):
             instance.author = request.user
             instance.save()
             return redirect(reverse('tickets'))
+    else:
         form = BugTicketForm()
     return render(request, "create-ticket.html", {'form': form})
     

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}The Ticket{% endblock %}
+{% block navbar %} 
+    <div class="nav-bar-auth-btn">
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Log Out</a>
+        {% else %}
+            <a class="btn btn-primary" href="{% url 'login' %}" role="button">Log In</a>
+            <a class="btn btn-success" href="{% url 'signup' %}" role="button">Sign Up</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="the-ticket-wrapper">
+        <h1>{{ ticket.title }}</h1>
+        <p><a href="{% url 'upvote' ticket.id %}">Upvote:</a> {{ ticket.upvotes.count }}</p>
+        <p>Created by: <span>{{ ticket.author }}</span></p>
+        <p>Published time: <span>{{ ticket.created_date }}</span></p>
+        <br />
+        <p>Issue status: <strong>{{ ticket.status }}</strong></p>
+        <p>Issue type: <strong>{{ ticket.issue_status }}</strong></p>
+        <br />
+        <p>{{ ticket.description }}</p>
+    </div>
+
+{% endblock %}

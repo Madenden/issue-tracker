@@ -8,15 +8,18 @@ from model_utils import Choices
 
 # Create your models here.
 class BugTicket(models.Model):
-    author = models.ForeignKey(User, default=None)
+    author = models.ForeignKey(User, default=1)
     title = models.CharField(max_length=254, default="")
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+    
+    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="bug_upvotes")
+    
     views = models.IntegerField(default=0)
+    
     STATUS  = Choices('to do', 'doing', 'done')
     status = StatusField()
     status_changed = MonitorField(monitor='status')
-    
     
     ISSUE_STATUS = Choices('bug', 'feature')
     issue_status = StatusField(choices_name='ISSUE_STATUS')
@@ -25,15 +28,16 @@ class BugTicket(models.Model):
     def __str__(self):
         return self.title
         
-    def snippet(self):
-        return self.description[:150] + "..."
-        
 class FeatureTicket(models.Model):
-    author = models.ForeignKey(User, default=None)
+    author = models.ForeignKey(User, default=1)
     title = models.CharField(max_length=254, default="")
     description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
+    
+    upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="feature_upvotes")
+    
     views = models.IntegerField(default=0)
+    
     STATUS  = Choices('to do', 'doing', 'done')
     status = StatusField()
     status_changed = MonitorField(monitor='status')
@@ -44,6 +48,4 @@ class FeatureTicket(models.Model):
     
     def __str__(self):
         return self.title
-        
-    def snippet(self):
-        return self.description[:150] + "..."
+

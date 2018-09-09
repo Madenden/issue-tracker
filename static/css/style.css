@@ -9,6 +9,10 @@
     margin-left: auto;
 }
 
+.container {
+    padding: 20px;
+}
+
 #time-wrapper {
     margin: 15% auto 0;
     min-width: 300px;

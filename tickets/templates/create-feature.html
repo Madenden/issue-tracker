@@ -29,12 +29,12 @@
             <div class="alert-message block-message error" id="stripe-error-message"></div>
         </div>
         <legend>Feature Ticket</legend>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 offset-md-3">
             {{ form|crispy }} 
         </div>
         
         <legend>Payment Details</legend>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 offset-md-3">
             {{ payment_form|crispy }}
         </div>
         <input type="submit" value="Submit" />

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-{% block title %}Create Ticket{% endblock %}
+{% block title %}Create Bug Issue{% endblock %}
 
 {% block navbar %} 
     <div class="nav-bar-auth-btn">
@@ -15,7 +15,7 @@
 
 {% block content %}
 <div class="create-bug-issue">
-    <h1>Create Issue</h1>
+    <h1>Create Bug Issue</h1>
     
     {% if messages %}
         {% for message in messages %}
