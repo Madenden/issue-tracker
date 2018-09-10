@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'alarm_clock',
     'authentication',
     'tickets',
+    'chartjs',
+    'rest_framework',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

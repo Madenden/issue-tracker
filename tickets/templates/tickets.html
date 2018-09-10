@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Tickets{% endblock %}
+{% block head_js %}
+{% endblock %}
 {% block navbar %} 
     <div class="nav-bar-auth-btn">
         {% if user.is_authenticated %}
@@ -13,7 +16,7 @@
 
 {% block content %}
 
-    <div class="issue-buttons">
+<div class="issue-buttons">
         <a class="btn btn-success" href="{% url 'create-bug-ticket' %}" role="button">New Bug Issue</a>
         <a class="btn btn-primary" href="{% url 'create-feature' %}" role="button">New Feature</a>
     </div> 
@@ -67,4 +70,15 @@
     </small>
 </div>
 
+<div class="chart-wrapper">
+    <h1>Chart</h1>
+    <h2>{{ numB }}</h2>
+    {{ data }}
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+{% endblock %}
+{% block js_footer %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="{% static 'js/chart.js' %}"></script>
 {% endblock %}
