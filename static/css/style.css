@@ -77,14 +77,37 @@
     width: 100%;
 }
 
-.create-feature,
-.create-bug-issue {
-    text-align: center;
+.create-issue {
+    margin: auto;
     width: 100%;
 }
 .create-form input[type='text'] {
     margin: auto;
     display: block;
+}
+
+.payment-message,
+.payment-form {
+    display: none;
+}
+.lead {
+    font-weight: 400;
+}
+
+.issue-first-letter {
+    position: absolute;    
+    color: white;
+    font-size: 1.3em;
+    font-weight: 600;
+    left: 10px;
+}
+
+.issue-ticket {
+    position: relative;
+}
+
+.pagination {
+    padding-top: 20px;
 }
 
 @media only screen and (max-width: 768px) {

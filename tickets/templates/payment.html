@@ -9,6 +9,7 @@
 {% endblock %} {% block content %}
 <div class="create-issue">
     <h1>Create Issue</h1>
+    <h2>{{ form }}</h2>
 
     {% if messages %} {% for message in messages %}
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -25,7 +26,7 @@
             <div class="alert-message block-message error" id="stripe-error-message"></div>
         </div>
         <div class="form-group col-md-6 offset-md-3">
-            {{ form|crispy }} 
+            {{ payment_form | crispy }}
             <div class="alert alert-warning payment-message" role="alert">
                 <p class="lead">If you wish to add a feature, yo have to pay a minimum amount of your choice!</p>
             </div>

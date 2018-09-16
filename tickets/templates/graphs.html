@@ -13,11 +13,13 @@
             <a class="btn btn-primary" href="{% url 'login' %}" role="button">Log In</a>
             <a class="btn btn-success" href="{% url 'signup' %}" role="button">Sign Up</a>
         {% endif %}
+        <a class="nav-link-graphs" href="{% url 'graphs' %}">Analytics</a>
     </div>
 {% endblock %}
 {% block content %}
 <div class="chart-wrapper">
     <h1>Chart</h1>
+    <h2>{{ numB }}</h2>
     {{ data }}
     <canvas id="myChart" width="400" height="400"></canvas>
 </div>
@@ -25,5 +27,6 @@
 
 {% endblock %}
 {% block js_footer %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="{% static 'js/chart.js' %}"></script>
 {% endblock %}

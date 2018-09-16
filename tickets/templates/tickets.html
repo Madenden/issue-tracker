@@ -11,14 +11,14 @@
             <a class="btn btn-primary" href="{% url 'login' %}" role="button">Log In</a>
             <a class="btn btn-success" href="{% url 'signup' %}" role="button">Sign Up</a>
         {% endif %}
+        <a class="nav-link-graphs" href="{% url 'graphs' %}">Analytics</a>
     </div>
 {% endblock %}
 
 {% block content %}
 
 <div class="issue-buttons">
-        <a class="btn btn-success" href="{% url 'create-bug-ticket' %}" role="button">New Bug Issue</a>
-        <a class="btn btn-primary" href="{% url 'create-feature' %}" role="button">New Feature</a>
+        <a class="btn btn-success" href="{% url 'create-ticket' %}" role="button">Create Issue</a>
     </div> 
 
 {% if messages %}
@@ -33,11 +33,16 @@
 
 
 <div class="my-3 p-3 bg-white rounded shadow-sm issue-tickets">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Recent Bug Issues</h6>
-    {% for ticket in bug_tickets %}
+    <h6 class="border-bottom border-gray pb-2 mb-0">Issue Tickets</h6>
+    {% for ticket in issue_tickets %}
     <a href="{% url 'the-ticket' ticket.id %}">
-        <div class="media text-muted pt-3">
+        <div class="media text-muted pt-3 issue-ticket">
           <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1658f5d7b65%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1658f5d7b65%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.546875%22%20y%3D%2216.9%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"/>
+            {% if ticket.issue_status == 'bug' %}
+              <span class="issue-first-letter">B</span>
+            {% else %}
+                <span class="issue-first-letter">F</span>
+            {% endif %}
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <strong class="d-block text-gray-dark">{{ ticket.title }}</strong>
             Created at: {{ ticket.created_date }} by: {{ ticket.author }} 
@@ -46,39 +51,29 @@
         </div>
     </a>
     {% endfor %}
-    <small class="d-block text-right mt-3">
-      <a href="#">All updates</a>
-    </small>
+
+    {% if issue_tickets.has_other_pages %}
+      <ul class="pagination justify-content-center pagination-sm">
+        {% if issue_tickets.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ issue_tickets.previous_page_number }}" tabindex="-1">Previous</a></li>
+        {% else %}
+          <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
+        {% endif %}
+        {% for i in issue_tickets.paginator.page_range %}
+          {% if issue_tickets.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if issue_tickets.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ issue_tickets.next_page_number }}">Next</a></li>
+        {% else %}
+          <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
 </div>
 
-<div class="my-3 p-3 bg-white rounded shadow-sm issue-tickets">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Recent Feature</h6>
-    {% for ticket in feature_tickets %}
-    <a href="{% url 'the-ticket' ticket.id %}">
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2232%22%20height%3D%2232%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1658f5d7b65%20text%20%7B%20fill%3A%23007bff%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A2pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1658f5d7b65%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20fill%3D%22%23007bff%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2211.546875%22%20y%3D%2216.9%22%3E32x32%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"/>
-          <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">{{ ticket.title }}</strong>
-            Created at: {{ ticket.created_date }} by: {{ ticket.author }} 
-          </p>
-            <strong class="d-block text-gray-dark">{{ ticket.status }}</strong>
-        </div>
-    </a>
-    {% endfor %}
-    <small class="d-block text-right mt-3">
-      <a href="#">All updates</a>
-    </small>
-</div>
-
-<div class="chart-wrapper">
-    <h1>Chart</h1>
-    <h2>{{ numB }}</h2>
-    {{ data }}
-    <canvas id="myChart" width="400" height="400"></canvas>
-</div>
-
-{% endblock %}
-{% block js_footer %}
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <script src="{% static 'js/chart.js' %}"></script>
 {% endblock %}

@@ -1,10 +1,10 @@
 from django import forms
-from .models import BugTicket, FeatureTicket
+from .models import Ticket, FeatureTicket
 
-class BugTicketForm(forms.ModelForm):
+class TicketForm(forms.ModelForm):
     class Meta:
-        model = BugTicket
-        fields = ['title', 'description']
+        model = Ticket
+        fields = ['title', 'description', 'issue_status']
         
 class FeatureTicketForm(forms.ModelForm):
     class Meta:
@@ -12,6 +12,8 @@ class FeatureTicketForm(forms.ModelForm):
         fields = ['title', 'description', 'amount']
         
 class MakePaymentForm(forms.Form):
+    
+    amount = forms.DecimalField(decimal_places=2, min_value=0.1)
     
     MONTH_CHOICES = [(i, i) for i in range(1, 12+1)]
     YEAR_CHOICES = [(i, i) for i in range(2018, 2036)]
