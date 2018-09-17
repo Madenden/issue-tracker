@@ -43,9 +43,10 @@
             {% else %}
                 <span class="issue-first-letter">F</span>
             {% endif %}
+            <h4>{{ ticket.updated_at }}</h4>
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <strong class="d-block text-gray-dark">{{ ticket.title }}</strong>
-            Created at: {{ ticket.created_date }} by: {{ ticket.author }} 
+            Created at: {{ ticket.created_at }} by: {{ ticket.author }} 
           </p>
             <strong class="d-block text-gray-dark">{{ ticket.status }}</strong>
         </div>

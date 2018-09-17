@@ -17,7 +17,7 @@ stripe.api_key = settings.STRIPE_SECRET
 
 # Create your views here.
 def tickets(request):
-    issue_tickets = Ticket.objects.all().order_by("created_date")
+    issue_tickets = Ticket.objects.all().order_by("created_at")
     
     paginator = Paginator(issue_tickets, 3)
     page = request.GET.get('page', 1)

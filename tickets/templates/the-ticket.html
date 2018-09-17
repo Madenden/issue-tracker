@@ -17,7 +17,7 @@
         <h1>{{ ticket.title }}</h1>
         <p><a href="{% url 'upvote' ticket.id %}">Upvote:</a> {{ ticket.upvotes.count }}</p>
         <p>Created by: <span>{{ ticket.author }}</span></p>
-        <p>Published time: <span>{{ ticket.created_date }}</span></p>
+        <p>Published time: <span>{{ ticket.created_at }}</span></p>
         <br />
         <p>Issue status: <strong>{{ ticket.status }}</strong></p>
         <p>Issue type: <strong>{{ ticket.issue_status }}</strong></p>

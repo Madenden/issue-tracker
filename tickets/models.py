@@ -11,7 +11,9 @@ class Ticket(models.Model):
     author = models.ForeignKey(User, default=1)
     title = models.CharField(max_length=254, default="")
     description = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
+    # created_date = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
     
     upvotes = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="bug_upvotes")
     
