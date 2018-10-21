@@ -43,7 +43,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Top 5 Upvoted Bug Tickets'
+                    text: 'Top 5 Most-Upvoted Bug Tickets'
                 }
             }
         });
@@ -72,7 +72,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Top 5 Upvoted Feature Tickets'
+                    text: 'Top 5 Most-Upvoted Feature Tickets'
                 }
             }
         });
@@ -119,7 +119,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Last Week Data'
+                    text: 'Tickets Have Been Created on Daily Base ( data colected from yeserday )'
                 }
             }
         });
@@ -160,7 +160,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Weekly data from yesterday'
+                    text: 'Tickets Have Been Created on Weekly Base ( data colected from yeserday )'
                 }
             }
         });
@@ -217,7 +217,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Data for a Year'
+                    text: 'Tickets Have Been Created on Monthly Base ( data colected from yeserday )'
                 }
             }
         });
