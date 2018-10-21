@@ -79,7 +79,7 @@ $.ajax({
         
         let ctx = document.getElementById('myChart').getContext('2d');
         let myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: {
                 labels: days,
                 datasets: [{
@@ -126,7 +126,7 @@ $.ajax({
         
         let ctx_weekly = document.getElementById('myChart_weekly').getContext('2d');
         let myChart_weekly = new Chart(ctx_weekly, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: {
                 labels: ['week1', 'week2', 'week3', 'week4'],
                 datasets: [{
@@ -167,7 +167,7 @@ $.ajax({
         
         let ctx2 = document.getElementById('myChart2').getContext('2d');
         let myChart2 = new Chart(ctx2, {
-            type: 'bar',
+            type: 'horizontalBar',
             data: {
                 labels: months,
                 datasets: [{

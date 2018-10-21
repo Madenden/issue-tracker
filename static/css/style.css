@@ -153,4 +153,8 @@
     .ticket-created-at {
         display: block;
     }
+    .chart-wrapper {
+        width: 100%;
+        position: relative;
+    }
 }
