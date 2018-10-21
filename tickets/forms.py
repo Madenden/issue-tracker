@@ -1,15 +1,10 @@
 from django import forms
-from .models import Ticket, FeatureTicket
+from .models import Ticket, Comment
 
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['title', 'description', 'issue_status']
-        
-class FeatureTicketForm(forms.ModelForm):
-    class Meta:
-        model = FeatureTicket
-        fields = ['title', 'description', 'amount']
+        fields = ['issue_status', 'title', 'description']
         
 class MakePaymentForm(forms.Form):
     
@@ -23,3 +18,11 @@ class MakePaymentForm(forms.Form):
     expiry_month = forms.ChoiceField(label='Month', choices=MONTH_CHOICES, required=False)
     expiry_year = forms.ChoiceField(label='Year', choices=YEAR_CHOICES, required=False)
     stripe_id = forms.CharField(widget=forms.HiddenInput)
+    
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ['content',]
+    
+    

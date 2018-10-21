@@ -1,28 +1,60 @@
-{% extends "base.html" %}
-{% block title %}The Ticket{% endblock %}
+{% extends "base.html" %} {% load static from staticfiles %} {% load static %} {% load crispy_forms_tags %} {% block title %}The Ticket{% endblock %} 
+
 {% block navbar %} 
     <div class="nav-bar-auth-btn">
         {% if user.is_authenticated %}
-            <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Log Out</a>
+            <a class="btn btn-primary" href="{% url 'logout' %}" role="button"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         {% else %}
             <a class="btn btn-primary" href="{% url 'login' %}" role="button">Log In</a>
             <a class="btn btn-success" href="{% url 'signup' %}" role="button">Sign Up</a>
         {% endif %}
-        <a class="nav-link-graphs" href="{% url 'graphs' %}">Analytics</a>
     </div>
+{% endblock %}
+
+{% block navbar-left %}
+  <li class=""><a class="nav-link" href="{% url 'graphs' %}">Graphs</a></li>
 {% endblock %}
 
 {% block content %}
-    <div class="the-ticket-wrapper">
-        <h1>{{ ticket.title }}</h1>
-        <p><a href="{% url 'upvote' ticket.id %}">Upvote:</a> {{ ticket.upvotes.count }}</p>
-        <p>Created by: <span>{{ ticket.author }}</span></p>
-        <p>Published time: <span>{{ ticket.created_at }}</span></p>
-        <br />
-        <p>Issue status: <strong>{{ ticket.status }}</strong></p>
-        <p>Issue type: <strong>{{ ticket.issue_status }}</strong></p>
-        <br />
-        <p>{{ ticket.description }}</p>
-    </div>
+<div class="the-ticket-wrapper">
+    <h1>{{ ticket.title }}</h1>
+    <p><a href="{% url 'upvote' ticket.id %}">Upvote:</a> {{ ticket.upvotes.count }}</p>
+    <p>Created by: <span>{{ ticket.author }}</span></p>
+    <p>Published time: <span>{{ ticket.created_at }}</span></p>
+    <br />
+    <p>Issue status: <strong>{{ ticket.status }}</strong></p>
+    <p>Issue type: <strong>{{ ticket.issue_status }}</strong></p>
+    <br />
+    <p>{{ ticket.description }}</p>
 
+<hr> 
+
+{{ ticket.comments.count }} Comment {{ ticket.comments|pluralize }}
+{% for comment in ticket.comments.all %}
+<div class="comment">
+    <div class="date">{{ comment.pub_date }}</div>
+    <strong>{{ comment.author }}</strong>
+    <p>{{ comment.content|linebreaks }}</p>
+</div>
+{% empty %}
+<p>No comments here yet :(</p>
+{% endfor %} 
+
+<form id="comment-form" method="POST" action="{% url 'the-ticket' ticket.id %}">
+    {% csrf_token %}
+    <div class="form-group col-md-12">
+        {{ form }} 
+    </div>
+    <input type="submit" value="Comment" class="btn btn-outline-sucess"/>
+</form>
+
+
+</div>
+
+{% block js_footer %}
+<script>
+
+</script>
 {% endblock %}
+{% endblock %}
+

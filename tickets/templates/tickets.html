@@ -3,20 +3,23 @@
 {% block title %}Tickets{% endblock %}
 {% block head_js %}
 {% endblock %}
+
 {% block navbar %} 
     <div class="nav-bar-auth-btn">
         {% if user.is_authenticated %}
-            <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Log Out</a>
+            <a class="btn btn-primary" href="{% url 'logout' %}" role="button"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         {% else %}
             <a class="btn btn-primary" href="{% url 'login' %}" role="button">Log In</a>
             <a class="btn btn-success" href="{% url 'signup' %}" role="button">Sign Up</a>
         {% endif %}
-        <a class="nav-link-graphs" href="{% url 'graphs' %}">Analytics</a>
     </div>
 {% endblock %}
 
-{% block content %}
+{% block navbar-left %}
+  <li class=""><a class="nav-link" href="{% url 'graphs' %}">Graphs</a></li>
+{% endblock %}
 
+{% block content %}
 <div class="issue-buttons">
         <a class="btn btn-success" href="{% url 'create-ticket' %}" role="button">Create Issue</a>
     </div> 
@@ -43,10 +46,11 @@
             {% else %}
                 <span class="issue-first-letter">F</span>
             {% endif %}
-            <h4>{{ ticket.updated_at }}</h4>
           <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <strong class="d-block text-gray-dark">{{ ticket.title }}</strong>
-            Created at: {{ ticket.created_at }} by: {{ ticket.author }} 
+            <strong class="text-gray-dark">{{ ticket.title }}</strong>
+            <span class="ticket-created-at">Created at: {{ ticket.created_at.date }} by: {{ ticket.author }}</span> 
+            <span><i class="fa fa-comments" aria-hidden="true"></i> Comments: {{ ticket.comments.count }}</span>
+            <span class="ticket-upvotes"><i class="fa fa-thumbs-up" aria-hidden="true"></i> Upvotes: {{ ticket.upvotes.count }}</span>
           </p>
             <strong class="d-block text-gray-dark">{{ ticket.status }}</strong>
         </div>

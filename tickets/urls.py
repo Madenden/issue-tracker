@@ -1,8 +1,9 @@
 from django.conf.urls import url
-from .views import tickets, the_ticket, create_ticket, create_feature, upvote, ChartData, payment, graphs
+from .forms import MakePaymentForm, TicketForm
+from .views import tickets, the_ticket, create_ticket, upvote, ChartData, payment, graphs
 
 urlpatterns = [
-    url(r'^create-feature/', create_feature, name='create-feature'),
+    # url(r'^create-feature/', create_feature, name='create-feature'),
     url(r'^create-ticket/', create_ticket, name='create-ticket'),
     url(r'^tickets/', tickets, name='tickets'),
     url(r'^(?P<pk>\d+)/$', the_ticket, name='the-ticket'),

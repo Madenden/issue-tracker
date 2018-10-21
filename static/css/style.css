@@ -9,6 +9,14 @@
     margin-left: auto;
 }
 
+.navbar-nav {
+    display: block;
+}
+.navbar-nav li {
+    display: inline-block;
+    padding: 5px 10px;
+}
+
 .container {
     padding: 20px;
 }
@@ -72,6 +80,8 @@
 
 .issue-tickets {
     margin: auto;
+    max-width: 500px;
+    width: 500px;
 }
 .issue-buttons {
     width: 100%;
@@ -110,6 +120,17 @@
     padding-top: 20px;
 }
 
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+
+.ticket-upvotes {
+    margin-left: 15px;
+}
+.ticket-created-at {
+    display: block;
+}
+
 @media only screen and (max-width: 768px) {
     .login-content-wrapper {
         width: 60%;
@@ -119,5 +140,17 @@
 @media only screen and (max-width: 425px) {
     .login-content-wrapper {
         width: 90%;
+    }
+    .navbar-nav li {
+        padding: 5px;
+    }
+    .navbar-brand {
+        font-size: 1.1em;
+    }
+    .ticket-upvotes {
+        margin-left: 0;
+    }
+    .ticket-created-at {
+        display: block;
     }
 }
