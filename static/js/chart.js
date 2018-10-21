@@ -119,7 +119,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Tickets Have Been Created on Daily Base ( data colected from yeserday )'
+                    text: 'Tickets Have Been Created on Daily Base ( the report show data from Yesterday )'
                 }
             }
         });
@@ -160,7 +160,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Tickets Have Been Created on Weekly Base ( data colected from yeserday )'
+                    text: 'Tickets Have Been Created on Weekly Base ( the report show data from Yesterday )'
                 }
             }
         });
@@ -217,7 +217,7 @@ $.ajax({
             options: {
                 title: {
                     display: true,
-                    text: 'Tickets Have Been Created on Monthly Base ( data colected from yeserday )'
+                    text: 'Tickets Have Been Created on Monthly Base'
                 }
             }
         });
