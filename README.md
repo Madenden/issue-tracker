@@ -28,23 +28,3 @@ Deploys to [Github](https://github.com/Madenden/issue-tracker) and [Heroku](http
 ## Authors
 
 * **Deniss Matvejevs** - *Design and develop* 
-
-
-Graphs 
-https://www.guru99.com/calendar-in-python.html
-
-https://bl.ocks.org/cjhin/8872a492d44694ecf5a883642926f19c
-
-https://www.fusioncharts.com/dev/getting-started/django/create-charts-in-django-using-database
-
-http://www.chartjs.org
-    Showing how many bugs or features are tended to on a daily, weekly and monthly basis, as well as the highest-voted bugs and features.
-    Grouped bar chart
-    http://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
-    
-    https://stackoverflow.com/questions/26453916/passing-data-from-django-to-d3
-    
-Testing
-    Python
-    JavaScript
-    
