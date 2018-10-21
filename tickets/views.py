@@ -35,7 +35,7 @@ def tickets(request):
         tickets = paginator.page(paginator.num_pages)
     
     
-    return render(request, "tickets.html", {'issue_tickets': tickets, 'test': the_ticket})
+    return render(request, "tickets.html", {'issue_tickets': tickets})
     
 @login_required(login_url="/login/") 
 def the_ticket(request, pk):
