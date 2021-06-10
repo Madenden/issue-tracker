@@ -1,5 +1,5 @@
 Babel==2.6.0
-Django==1.11
+Django==2.2.24
 PyYAML==3.13
 boto3==1.9.0
 botocore==1.12.1
